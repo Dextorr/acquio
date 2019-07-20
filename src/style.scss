@@ -12,6 +12,22 @@ $secondary: #240A40;
   font-family: 'Open Sans', sans-serif;
 }
 
+// GENERAL *********************************************************************
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+// HEADERS *********************************************************************
+
+header.MuiAppBar-root {
+  background: $secondary;
+}
+
 h1 {
   @include header();
   color: $primary;
