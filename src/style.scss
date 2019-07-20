@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,700&display=swap');
+
+// COLORS **********************************************************************
+
+$primary: #8B00FF;
+$secondary: #240A40;
+@mixin header(){
+  font-family: Montserrat, sans-serif;
+}
+
+@mixin body(){
+  font-family: 'Open Sans', sans-serif;
+}
+
 h1 {
-  color: #f00;
+  @include header();
+  color: $primary;
+  background: $secondary;
+  text-align: center;
 }
