@@ -2,9 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Home from './components/Home'
+import Home from './components/common/Home'
 import Navbar from './components/common/Navbar'
+import JobsIndex from './components/jobs/JobsIndex'
 
+import 'semantic-ui-css/semantic.min.css'
 import './style.scss'
 
 class App extends React.Component {
@@ -13,7 +15,8 @@ class App extends React.Component {
       <BrowserRouter>
         <Navbar />
         <Switch>
-          <Route path='/' component={Home} />
+          <Route path='/jobs' component={JobsIndex} />
+          <Route path='' component={Home} />
         </Switch>
       </BrowserRouter>
     )

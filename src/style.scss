@@ -22,10 +22,51 @@ body {
   margin: 0;
 }
 
+button.ui.button,
+div.menu.nav a div.item {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+}
+
 // HEADERS *********************************************************************
 
-header.MuiAppBar-root {
+div.menu.nav {
   background: $secondary;
+  height: 8vh;
+  border-radius: 0;
+
+  & > div {
+    justify-content: flex-end;
+  }
+
+  #logo {
+    margin-right: auto;
+    img {
+      width: 125px;
+    }
+  }
+
+  a:not(#logo) {
+    transition: background 0.5s ease;
+
+    &:hover {
+      background: $primary;
+
+      div.item {
+        color: #fff;
+      }
+    }
+
+    div.item {
+      color: $primary;
+      height: 100%;
+      transition: color 0.5s ease;
+    }
+  }
 }
 
 h1 {
@@ -33,4 +74,29 @@ h1 {
   color: $primary;
   background: $secondary;
   text-align: center;
+}
+
+// HOME ***********************************************************************
+
+main.home {
+  display: flex;
+  width: 100vw;
+  height: 85vh;
+  justify-content: space-around;
+  align-items: center;
+
+  button.ui.button {
+    width: 250px;
+    height: 150px;
+    border: 2px solid $secondary;
+    background: #fff;
+    border-radius: 5px;
+    color: $secondary;
+    transition: all 0.5s ease;
+
+    &:hover {
+      transform: scale(1.1);
+      background: lighten($primary, 40%);
+    }
+  }
 }
