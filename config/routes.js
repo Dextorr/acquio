@@ -9,6 +9,9 @@ router.route('/companies')
 router.route('/jobs')
   .get(jobController.index)
 
+router.route('/jobs/:id')
+  .get(jobController.show)
+
 router.route('/sectors')
   .get(sectorController.index)
 

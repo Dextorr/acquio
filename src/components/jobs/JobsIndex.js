@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
-import { Container, Grid, Card } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import JobsCard from './JobsCard'
 
 class JobsIndex extends React.Component{
@@ -18,11 +19,13 @@ class JobsIndex extends React.Component{
       <main className="jobs">
         <Container>
 
-          <Grid stackable columns={4}>
+          <Grid stackable>
             {this.state.jobs.map((job, i) =>
 
-              <Grid.Column key={i}>
-                <JobsCard job={job} />
+              <Grid.Column mobile={16} tablet={8} computer={4} key={i}>
+                <Link to={`/jobs/${job._id}`}>
+                  <JobsCard job={job} />
+                </Link>
               </Grid.Column>
 
             )}

@@ -44,7 +44,7 @@ div.menu.nav {
   }
 
   #logo {
-    margin-right: auto;
+    margin: 0 auto 0 15px;
     img {
       width: 125px;
     }
@@ -110,11 +110,22 @@ main.jobs {
 
   div.ui.card {
     height: 100%;
-    transition: background 0.5s ease;
+    width: 100%;
+    transition: all 0.5s ease;
     cursor: pointer;
+    text-align: center;
 
     &:hover {
       background: lighten($primary, 40%);
+      box-shadow: 0 1px 3px 0 $secondary, 0 0 0 1px $secondary;
+    }
+  }
+}
+
+main.job {
+  div.sectors {
+    div {
+      border: 1px solid #000; 
     }
   }
 }

@@ -9,14 +9,10 @@ const JobsCard = ({ job }) => {
 
         <Card.Header>{job.name}</Card.Header>
 
-        <Card.Meta>
-          {job.sectors.map(sector => sector.name).join(', ')}
-        </Card.Meta>
-
       </Card.Content>
 
 
-      <Card.Content extra>{job.company.name}</Card.Content>
+      <Card.Content extra>{job.sectors.map(sector => sector.name).join(', ')}</Card.Content>
     </Card>
   )
 }
