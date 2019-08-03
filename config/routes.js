@@ -4,9 +4,10 @@ const jobController = require('../controllers/jobs')
 const sectorController = require('../controllers/sectors')
 const userController = require('../controllers/users')
 const authController = require('../controllers/auth')
+const { secureRoute, adminRoute } = require('../lib/secureRoute')
 
 router.route('/companies')
-  .get(companyController.index)
+  .get(secureRoute, adminRoute, companyController.index)
 
 router.route('/jobs')
   .get(jobController.index)
@@ -18,7 +19,13 @@ router.route('/sectors')
   .get(sectorController.index)
 
 router.route('/users')
-  .get(userController.index)
+  .get(secureRoute, adminRoute, userController.index)
+
+router.route('/users/:id')
+  .get(secureRoute, adminRoute, userController.show)
+
+router.route('/profile')
+  .get(secureRoute, userController.profile)
 
 router.route('/register')
   .post(authController.register)

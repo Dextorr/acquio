@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 
 function registerRoute(req, res, next){
+  req.body.admin = false
   User.create(req.body)
     .then(() => res.status(201).json( { message: 'Registration successful'}))
     .catch(next)

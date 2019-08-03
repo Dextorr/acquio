@@ -7,13 +7,14 @@ const userSchema = new mongoose.Schema({
   fName: { type: String, required: true },
   lName: { type: String, required: true },
   location: { type: String, required: true },
+  cv: { type: String, required: true },
   statement: { type: String },
   portfolio: { type: String },
   github: { type: String },
   linkedIn: { type: String },
-  cv: { type: String },
   phone: { type: String },
-  jobs: [{ type: mongoose.Schema.ObjectId, ref: 'Job' }]
+  jobs: [{ type: mongoose.Schema.ObjectId, ref: 'Job' }],
+  admin: { type: Boolean, required: true }
 })
 
 userSchema.virtual('passwordConfirmation')
