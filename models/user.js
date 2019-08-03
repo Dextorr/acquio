@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
   github: { type: String },
   linkedIn: { type: String },
   cv: { type: String },
-  phone: { type: String }
+  phone: { type: String },
+  jobs: [{ type: mongoose.Schema.ObjectId, ref: 'Job' }]
 })
 
 userSchema.virtual('passwordConfirmation')
