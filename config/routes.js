@@ -3,6 +3,7 @@ const companyController = require('../controllers/companies')
 const jobController = require('../controllers/jobs')
 const sectorController = require('../controllers/sectors')
 const userController = require('../controllers/users')
+const authController = require('../controllers/auth')
 
 router.route('/companies')
   .get(companyController.index)
@@ -18,5 +19,8 @@ router.route('/sectors')
 
 router.route('/users')
   .get(userController.index)
+
+router.route('/register')
+  .post(authController.register)
 
 module.exports = router
