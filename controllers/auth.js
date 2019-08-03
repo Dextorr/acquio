@@ -19,7 +19,7 @@ function loginRoute(req, res, next){
       const token = jwt.sign(payload, secret, { expiresIn: '12h' })
       res.json({
         token,
-        message: `Welcome back ${user.username}`
+        message: `Welcome back ${user.fName}`
       })
     })
     .catch(next)
