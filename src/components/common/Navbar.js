@@ -12,10 +12,6 @@ const Navbar = () => {
           <img src='../../assets/logo-files/svg/color-no-bg.svg' />
         </Link>
 
-        <Link to="/contact">
-          <Menu.Item content="CONTACT" />
-        </Link>
-
         <Link to="/about">
           <Menu.Item content="ABOUT" />
         </Link>
