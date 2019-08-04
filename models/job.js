@@ -13,12 +13,14 @@ const jobSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   location: { type: String, required: true},
+  type: { type: String, required: true },
   salaryMin: {type: Number},
   salaryMax: {type: Number},
   company: { type: mongoose.Schema.ObjectId, ref: 'Company', required: true },
   sectors: [{ type: mongoose.Schema.ObjectId, ref: 'Sector' }],
   applicants: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
-  tempApplicants: [ applicantSchema ]
+  tempApplicants: [ applicantSchema ],
+  active: { type: Boolean, required: true }
 }, {
   timestamps: true
 })
