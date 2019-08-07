@@ -20,6 +20,10 @@ $secondary: #240A40;
 
 body {
   margin: 0;
+
+  main {
+    margin-top: 1rem;
+  }
 }
 
 button.ui.button,
@@ -38,6 +42,7 @@ div.menu.nav {
   background: $secondary;
   height: 10vh;
   border-radius: 0;
+  margin: 0;
 
   & > div {
     justify-content: flex-end;
@@ -81,11 +86,12 @@ h1 {
 main.home {
   width: 100vw;
   height: 85vh;
+  margin: 0;
 
   & > div.ui.container {
     height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 
     button.ui.button {
@@ -125,7 +131,7 @@ main.jobs {
 main.job {
   div.sectors {
     div {
-      border: 1px solid #000; 
+      border: 1px solid #000;
     }
   }
 }
