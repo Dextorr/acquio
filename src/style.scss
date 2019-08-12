@@ -85,26 +85,39 @@ h1 {
 
 main.home {
   width: 100vw;
-  height: 85vh;
+  height: 90vh;
   margin: 0;
 
-  & > div.ui.container {
+  section.hero{
+    background: url('./assets/images/desk.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 
-    button.ui.button {
-      width: 250px;
-      height: 150px;
-      border: 2px solid $secondary;
-      background: #fff;
-      border-radius: 5px;
-      color: $secondary;
-      transition: all 0.5s ease;
+    div.hero-overlay {
+      height: 100%;
+      background: linear-gradient(20deg, rgba($secondary,0.5), rgba($secondary,0.8), rgba($secondary,0.9));
 
-      &:hover {
-        background: lighten($primary, 40%);
+      div.ui.container {
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        button.ui.button {
+          width: 250px;
+          height: 150px;
+          border: 2px solid $secondary;
+          background: rgba(255,255,255,0.5);
+          border-radius: 5px;
+          color: $secondary;
+          transition: all 0.5s ease;
+
+          &:hover {
+            background: lighten($primary, 40%);
+          }
+        }
       }
     }
   }
