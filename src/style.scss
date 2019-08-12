@@ -85,15 +85,16 @@ h1 {
 
 main.home {
   width: 100vw;
-  height: 90vh;
   margin: 0;
+
+  // ABOUT
 
   section.hero{
     background: url('./assets/images/desk.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    height: 100%;
+    height: 90vh;
 
     div.hero-overlay {
       height: 100%;
@@ -120,6 +121,10 @@ main.home {
         }
       }
     }
+  }
+
+  section.about {
+    padding: 4% 0;
   }
 }
 
