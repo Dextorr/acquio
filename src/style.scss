@@ -12,6 +12,13 @@ $secondary: #240A40;
   font-family: 'Open Sans', sans-serif;
 }
 
+@mixin fixed-bg($url){
+  background: url($url);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 // GENERAL *********************************************************************
 
 * {
@@ -20,9 +27,28 @@ $secondary: #240A40;
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  @include body();
 
   main {
     margin-top: 1rem;
+    min-height: 80vh;
+  }
+
+  // FOOTER ********************************************************************
+
+  footer {
+    height: 10vh;
+    background: $secondary;
+    display: flex;
+    color: $primary;
+    margin-top: auto;
+
+    p.copy {
+      align-self: flex-end;
+      margin: 0 15px 5px auto;
+    }
   }
 }
 
@@ -40,6 +66,7 @@ a {
 
 div.menu.nav {
   background: $secondary;
+  border-bottom: 1px inset $primary;
   height: 10vh;
   border-radius: 0;
   margin: 0;
@@ -50,6 +77,9 @@ div.menu.nav {
 
   #logo {
     margin: 0 auto 0 15px;
+    display: flex;
+    align-items: center;
+
     img {
       width: 125px;
     }
@@ -87,18 +117,13 @@ main.home {
   width: 100vw;
   margin: 0;
 
-  // ABOUT
-
   section.hero{
-    background: url('./assets/images/desk.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    @include fixed-bg('./assets/images/desk.jpg');
     height: 90vh;
 
     div.hero-overlay {
       height: 100%;
-      background: linear-gradient(20deg, rgba($secondary,0.5), rgba($secondary,0.8), rgba($secondary,0.9));
+      background: linear-gradient(20deg, transparent, rgba($secondary,0.5) 25%, rgba($secondary,0.8), rgba($secondary,0.9));
 
       div.ui.container {
         height: 100%;
@@ -124,7 +149,29 @@ main.home {
   }
 
   section.about {
-    padding: 4% 0;
+    @include fixed-bg('./assets/images/meeting.jpg');
+
+    div.about-overlay {
+      background: linear-gradient(-20deg, transparent, rgba($secondary,0.5) 25%, rgba($secondary,0.8), rgba($secondary,0.9));
+      padding: 4% 0;
+      height: 100%;
+    }
+
+    h2 {
+      color: $secondary;
+      background: linear-gradient(20deg, $primary, transparent 50%);
+      border-radius: 10px;
+      padding-left: 10px;
+    }
+
+    div.about-content {
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 1rem;
+      border-radius: 10px;
+      color: $primary;
+      background: rgba($secondary,0.7);
+    }
   }
 }
 
