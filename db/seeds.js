@@ -32,19 +32,24 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
           name: 'Sales'
         }),
         company1: Company.create({
-          companyName: 'Company One'
+          companyName: 'Company One',
+          contact: {
+            fName: 'John',
+            lName: 'Smith',
+            title: 'Administrative Officer',
+            phone: '07712345678',
+            email: 'john@companyone.com'
+          }
         }),
         company2: Company.create({
-          companyName: 'Company Two'
-        }),
-        admin: User.create({
-          fName: 'Dexter',
-          lName: 'De Leon',
-          email: 'contact@dexdeleon.com',
-          location: 'London',
-          admin: true,
-          password: 'password',
-          passwordConfirmation: 'password'
+          companyName: 'Company Two',
+          contact: {
+            fName: 'Jane',
+            lName: 'Doe',
+            title: 'Administrative Officer',
+            phone: '07787654321',
+            email: 'jane@companyone.com'
+          }
         })
       })
     })
@@ -55,6 +60,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
           description: 'Medium experience chef needed to assist head chef in a small café kitchen.',
           location: 'London',
           company: data.company1,
+          type: 'full-time',
+          active: true,
           sectors: [data.fnb, data.hospitality]
         }),
         job2: Job.create({
@@ -62,6 +69,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
           description: 'Experienced accountant needed for a medium B2B credit company.',
           location: 'London',
           company: data.company2,
+          type: 'full-time',
+          active: true,
           sectors: [data.finance]
         }),
         job3: Job.create({
@@ -69,6 +78,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
           description: 'Junior level developer needed for a small, in-house, development team.',
           location: 'London',
           company: data.company2,
+          type: 'full-time',
+          active: true,
           sectors: [data.finance, data.tech]
         }),
         job4: Job.create({
@@ -76,6 +87,8 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
           description: 'Entry-level sales assistant required to work with café clients/partners.',
           location: 'London',
           company: data.company1,
+          type: 'full-time',
+          active: true,
           sectors: [data.sales, data.hospitality, data.fnb]
         }),
         job5: Job.create({
@@ -83,7 +96,51 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
           description: 'Waiter needed for small café, experience required.',
           location: 'London',
           company: data.company1,
+          type: 'full-time',
+          active: true,
           sectors: [data.fnb, data.hospitality]
+        })
+      })
+    })
+    .then(data1 => {
+      return Promise.props({
+        admin: User.create({
+          email: 'admin@acquio.co.uk',
+          password: 'password',
+          passwordConfirmation: 'password',
+          fName: 'Reinfredo',
+          lName: 'Bondoc',
+          location: 'London',
+          cv: 'CV',
+          admin: true
+        }),
+        user1: User.create({
+          email: 'contact@dexdeleon.com',
+          password: 'password',
+          passwordConfirmation: 'password',
+          fName: 'Dexter',
+          lName: 'De Leon',
+          location: 'London',
+          cv: 'This is my CV',
+          statement: 'I\'m Dex De Leon, a full-stack Web Developer looking for a full-time role.',
+          portfolio: 'http://dexdeleon.com',
+          github: 'https://github.io/Dextorr',
+          linkedIn: 'https://www.linkedin.com/in/dexter-de-leon/',
+          phone: '07710422560',
+          jobs: [data1.job3],
+          admin: false
+        }),
+        user2: User.create({
+          email: 'johndoe@email.com',
+          password: 'password',
+          passwordConfirmation: 'password',
+          fName: 'John',
+          lName: 'Doe',
+          location: 'London',
+          cv: 'This is my CV',
+          statement: 'I\'m John Doe, an accountant looking for a full-time role.',
+          jobs: [data1.job2],
+          admin: false
         })
       })
     })
