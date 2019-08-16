@@ -8,7 +8,7 @@ const JobsCard = ({ job }) => {
       <Card.Content>
 
         <Card.Header>{job.name}</Card.Header>
-        <Card.Meta>Posted {Date(job.createdAt).toString().substring(4, 15)}</Card.Meta>
+        <Card.Meta>Posted {new Date(job.createdAt).toString().substring(4, 15)}</Card.Meta>
 
       </Card.Content>
 
