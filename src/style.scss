@@ -27,13 +27,21 @@ $secondary: #240A40;
 
 body {
   margin: 0;
-  display: flex;
-  flex-direction: column;
   @include body();
 
+  div#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
   main {
-    margin-top: 1rem;
+    padding-top: 1rem;
     min-height: 80vh;
+
+    &.home {
+      padding-top: 0;
+    }
   }
 
   // FOOTER ********************************************************************
@@ -148,29 +156,46 @@ main.home {
     }
   }
 
-  section.about {
-    @include fixed-bg('./assets/images/meeting.jpg');
+  section:nth-child(n+2) {
 
-    div.about-overlay {
-      background: linear-gradient(-20deg, transparent, rgba($secondary,0.5) 25%, rgba($secondary,0.8), rgba($secondary,0.9));
-      padding: 4% 0;
+    & > div {
+      padding-bottom: 4%;
       height: 100%;
+
+      h2 {
+        color: $secondary;
+        background: linear-gradient(20deg, $primary, transparent);
+        height: 4rem;
+
+        div {
+          display: flex;
+          align-items: center;
+          height: 100%;
+        }
+      }
     }
 
-    h2 {
-      color: $secondary;
-      background: linear-gradient(20deg, $primary, transparent 50%);
-      border-radius: 10px;
-      padding-left: 10px;
+    &.about{
+      @include fixed-bg('./assets/images/meeting.jpg');
+
+      div.about-overlay {
+        background: linear-gradient(-20deg, transparent, rgba($secondary,0.5) 25%, rgba($secondary,0.8), rgba($secondary,0.9));
+      }
+
+
+      div.about-content {
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: 1rem;
+        border-radius: 10px;
+        color: lighten($primary, 20%);
+        background: rgba($secondary,0.7);
+      }
     }
 
-    div.about-content {
-      font-size: 1.2rem;
-      font-weight: 700;
-      padding: 1rem;
-      border-radius: 10px;
-      color: $primary;
-      background: rgba($secondary,0.7);
+
+    &.recent-jobs {
+
     }
   }
 }
