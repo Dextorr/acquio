@@ -17,6 +17,7 @@ router.route('/companies/:id')
 
 router.route('/jobs')
   .get(jobController.index)
+  .post(secureRoute, adminRoute, jobController.create)
 
 router.route('/jobs/:id')
   .get(jobController.show)

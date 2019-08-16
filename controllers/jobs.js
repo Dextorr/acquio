@@ -14,7 +14,14 @@ function showRoute(req, res, next){
     .catch(next)
 }
 
+function createRoute(req, res, next){
+  Job.create(req.body)
+    .then(job => res.status(201).json(job))
+    .catch(next)
+}
+
 module.exports = {
   index: indexRoute,
-  show: showRoute
+  show: showRoute,
+  create: createRoute
 }
