@@ -19,6 +19,21 @@ $secondary: #240A40;
   background-attachment: fixed;
 }
 
+@mixin job-card(){
+  div.ui.card {
+    height: 100%;
+    width: 100%;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+      background: lighten($primary, 40%);
+      box-shadow: 0 1px 3px 0 $secondary, 0 0 0 1px $secondary;
+    }
+  }
+}
+
 // GENERAL *********************************************************************
 
 * {
@@ -208,7 +223,7 @@ main.home {
 
 
     &.recent-jobs {
-
+      @include job-card();
     }
   }
 }
@@ -217,18 +232,7 @@ main.home {
 
 main.jobs {
 
-  div.ui.card {
-    height: 100%;
-    width: 100%;
-    transition: all 0.5s ease;
-    cursor: pointer;
-    text-align: center;
-
-    &:hover {
-      background: lighten($primary, 40%);
-      box-shadow: 0 1px 3px 0 $secondary, 0 0 0 1px $secondary;
-    }
-  }
+  @include job-card();
 }
 
 main.job {
