@@ -10,6 +10,11 @@ router.route('/companies')
   .get(secureRoute, adminRoute, companyController.index)
   .post(companyController.create)
 
+router.route('/companies/:id')
+  .get(secureRoute, adminRoute, companyController.show)
+  .put(secureRoute, adminRoute, companyController.update)
+  .delete(secureRoute, adminRoute, companyController.delete)
+
 router.route('/jobs')
   .get(jobController.index)
 
