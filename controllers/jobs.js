@@ -20,8 +20,15 @@ function createRoute(req, res, next){
     .catch(next)
 }
 
+function deleteRoute(req, res, next){
+  Job.deleteOne({ _id: req.params.id })
+    .then(() => res.status(204).send())
+    .catch(next)
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
-  create: createRoute
+  create: createRoute,
+  delete: deleteRoute
 }

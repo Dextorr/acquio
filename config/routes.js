@@ -21,6 +21,7 @@ router.route('/jobs')
 
 router.route('/jobs/:id')
   .get(jobController.show)
+  .delete(secureRoute, adminRoute, jobController.delete)
 
 router.route('/sectors')
   .get(sectorController.index)
