@@ -8,6 +8,7 @@ const { secureRoute, adminRoute } = require('../lib/secureRoute')
 
 router.route('/companies')
   .get(secureRoute, adminRoute, companyController.index)
+  .post(companyController.create)
 
 router.route('/jobs')
   .get(jobController.index)
