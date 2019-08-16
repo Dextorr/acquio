@@ -34,10 +34,19 @@ function updateRoute(req, res, next){
     .catch(next)
 }
 
+function archiveRoute(req, res, next){
+  Job.findById(req.params.id)
+    .then(job => job.set({ active: false }))
+    .then(job => job.save())
+    .then(job => res.status(200).json(job))
+    .catch(next)
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
   create: createRoute,
   delete: deleteRoute,
-  update: updateRoute
+  update: updateRoute,
+  archive: archiveRoute
 }
