@@ -9,7 +9,10 @@ class JobsIndex extends React.Component{
 
   componentDidMount(){
     axios.get('/api/jobs')
-      .then(res => this.setState({ jobs: res.data }))
+      .then(res => {
+        const jobs = res.data.filter(job => job.active)
+        this.setState({ jobs })
+      })
       .catch(err => console.error(err))
   }
 

@@ -36,7 +36,7 @@ function updateRoute(req, res, next){
 
 function archiveRoute(req, res, next){
   Job.findById(req.params.id)
-    .then(job => job.set({ active: false }))
+    .then(job => job.set({ active: !job.active }))
     .then(job => job.save())
     .then(job => res.status(200).json(job))
     .catch(next)
