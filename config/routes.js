@@ -26,6 +26,8 @@ router.route('/jobs/:id')
 
 router.put('/jobs/:id/archive', secureRoute, adminRoute, jobController.archive)
 
+router.put('/jobs/:id/apply', secureRoute, userController.apply)
+
 router.route('/sectors')
   .get(sectorController.index)
 

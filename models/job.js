@@ -18,11 +18,20 @@ const jobSchema = new mongoose.Schema({
   salaryMax: {type: Number},
   company: { type: mongoose.Schema.ObjectId, ref: 'Company', required: true },
   sectors: [{ type: mongoose.Schema.ObjectId, ref: 'Sector' }],
-  applicants: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   tempApplicants: [ applicantSchema ],
   active: { type: Boolean, required: true }
 }, {
   timestamps: true
+})
+
+jobSchema.virtual('applicants', {
+  ref: 'User',
+  localField: '_id',
+  foreignField: 'jobs'
+})
+
+jobSchema.set('toJSON', {
+  virtuals: true
 })
 
 module.exports = mongoose.model('Job', jobSchema)
