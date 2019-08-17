@@ -53,6 +53,20 @@ function quickApply(req, res, next){
     .catch(next)
 }
 
+function getApplicant(req, res, next){
+  Job.findById(req.params.job)
+    .then(job => {
+      const applicant = job.tempApplicants.filter(app => {
+        console.log(app)
+        return `${app._id}` === req.params.user
+      })
+      console.log(applicant)
+      return res.status(200).json(applicant)
+    })
+    .catch(next)
+}
+
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
@@ -60,5 +74,6 @@ module.exports = {
   delete: deleteRoute,
   update: updateRoute,
   archive: archiveRoute,
-  apply: quickApply
+  apply: quickApply,
+  complete: getApplicant
 }

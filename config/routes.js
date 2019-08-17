@@ -30,6 +30,8 @@ router.put('/jobs/:id/apply', secureRoute, userController.apply)
 
 router.put('/jobs/:id/quickapply', jobController.apply)
 
+router.get('/quickapply/:job/:user', jobController.complete)
+
 router.route('/sectors')
   .get(sectorController.index)
 
