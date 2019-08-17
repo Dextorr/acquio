@@ -42,11 +42,23 @@ function archiveRoute(req, res, next){
     .catch(next)
 }
 
+function quickApply(req, res, next){
+  Job.findById(req.params.id)
+    .then(job => {
+      const tempApplicants = [ ...job.tempApplicants, req.body ]
+      return job.set({ tempApplicants })
+    })
+    .then(job => job.save())
+    .then(job => res.status(200).json(job))
+    .catch(next)
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
   create: createRoute,
   delete: deleteRoute,
   update: updateRoute,
-  archive: archiveRoute
+  archive: archiveRoute,
+  apply: quickApply
 }

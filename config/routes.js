@@ -28,6 +28,8 @@ router.put('/jobs/:id/archive', secureRoute, adminRoute, jobController.archive)
 
 router.put('/jobs/:id/apply', secureRoute, userController.apply)
 
+router.put('/jobs/:id/quickapply', jobController.apply)
+
 router.route('/sectors')
   .get(sectorController.index)
 
