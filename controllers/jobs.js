@@ -57,15 +57,26 @@ function getApplicant(req, res, next){
   Job.findById(req.params.job)
     .then(job => {
       const applicant = job.tempApplicants.filter(app => {
-        console.log(app)
         return `${app._id}` === req.params.user
-      })
+      })[0]
       console.log(applicant)
       return res.status(200).json(applicant)
     })
     .catch(next)
 }
 
+function removeApplicant(req, res, next){
+  Job.findById(req.params.job)
+    .then(job => {
+      const tempApplicants = job.tempApplicants.filter(app => {
+        return `${app._id}` !== req.params.user
+      })
+      return job.set({ tempApplicants })
+    })
+    .then(job => job.save())
+    .then(job => res.status(200).json(job))
+    .catch(next)
+}
 
 module.exports = {
   index: indexRoute,
@@ -75,5 +86,6 @@ module.exports = {
   update: updateRoute,
   archive: archiveRoute,
   apply: quickApply,
-  complete: getApplicant
+  complete: getApplicant,
+  remove: removeApplicant
 }
