@@ -11,8 +11,10 @@ class Login extends React.Component {
     super()
 
     this.state = {
-      email: '',
-      password: '',
+      data: {
+        email: '',
+        password: ''
+      },
       errors: null
     }
 
@@ -21,12 +23,13 @@ class Login extends React.Component {
   }
 
   handleChange({ target: { name, value } }){
-    this.setState({ [name]: value })
+    const data = { ...this.state.data, [name]: value }
+    this.setState({ data })
   }
 
   handleSubmit(e){
     e.preventDefault()
-    axios.post('/api/login', this.state)
+    axios.post('/api/login', this.state.data)
       .then(res => Auth.setToken(res.data.token))
       .then(() => this.props.history.push('/profile'))
       .catch(err => this.setState({ errors: err.response.data }))
@@ -42,7 +45,7 @@ class Login extends React.Component {
               fluid
               label="Email"
               name="email"
-              value={this.state.email}
+              value={this.state.data.email}
               onChange={this.handleChange}
               placeholder="Please enter your email..."
             />
@@ -51,7 +54,7 @@ class Login extends React.Component {
               label="Password"
               type="password"
               name="password"
-              value={this.state.password}
+              value={this.state.data.password}
               onChange={this.handleChange}
               placeholder="Please enter your password..."
             />
