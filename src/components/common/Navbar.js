@@ -3,6 +3,8 @@ import React from 'react'
 import { Menu, Container } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 
+import Auth from '../../lib/Auth'
+
 const Navbar = () => {
   return (
     <Menu className="nav">
@@ -24,9 +26,15 @@ const Navbar = () => {
           <Menu.Item content="HIRING" />
         </Link>
 
-        <Link to="/profile">
-          <Menu.Item content="PROFILE" />
-        </Link>
+        {Auth.isAuthenticated() ?
+          <Link to="/profile">
+            <Menu.Item content="PROFILE" />
+          </Link>
+          :
+          <Link to="/login">
+            <Menu.Item content="LOGIN" />
+          </Link>
+        }
 
       </Container>
     </Menu>
