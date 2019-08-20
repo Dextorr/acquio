@@ -242,3 +242,39 @@ main.job {
     }
   }
 }
+
+// FORMS ***********************************************************************
+
+form {
+
+  p.error-message {
+    color: #f00;
+    font-size: 0.9rem;
+  }
+
+  button.ui.button {
+    color: $primary;
+    background: $secondary;
+    transition: all 0.5s ease;
+
+    span {
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $secondary;
+      background: $primary;
+    }
+
+    &:active {
+      box-shadow: inset 0px 2px 5px 1px $secondary;
+
+      span {
+        transform: scale(0.9);
+      }
+    }
+  }
+}

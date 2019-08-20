@@ -5,40 +5,59 @@ import { Link, withRouter } from 'react-router-dom'
 
 import Auth from '../../lib/Auth'
 
-const Navbar = () => {
-  return (
-    <Menu className="nav">
-      <Container fluid>
+class Navbar extends React.Component {
+  constructor(){
+    super()
 
-        <Link to="/" id="logo">
-          <img src='../../assets/logo-files/svg/color-no-bg.svg' />
-        </Link>
+    this.logout = this.logout.bind(this)
+  }
 
-        <Link to="/about">
-          <Menu.Item content="ABOUT" />
-        </Link>
+  logout(){
+    Auth.removeToken()
+    this.props.history.push('/')
+  }
 
-        <Link to="/jobs">
-          <Menu.Item content="JOBS" />
-        </Link>
+  render(){
+    return (
+      <Menu className="nav">
+        <Container fluid>
 
-        <Link to="/hiring">
-          <Menu.Item content="HIRING" />
-        </Link>
-
-        {Auth.isAuthenticated() ?
-          <Link to="/profile">
-            <Menu.Item content="PROFILE" />
+          <Link to="/" id="logo">
+            <img src='../../assets/logo-files/svg/color-no-bg.svg' />
           </Link>
-          :
-          <Link to="/login">
-            <Menu.Item content="LOGIN" />
-          </Link>
-        }
 
-      </Container>
-    </Menu>
-  )
+          <Link to="/about">
+            <Menu.Item content="ABOUT" />
+          </Link>
+
+          <Link to="/jobs">
+            <Menu.Item content="JOBS" />
+          </Link>
+
+          <Link to="/hiring">
+            <Menu.Item content="HIRING" />
+          </Link>
+
+          {Auth.isAuthenticated() ?
+            <Link to="/profile">
+              <Menu.Item content="PROFILE" />
+            </Link>
+            :
+            <Link to="/login">
+              <Menu.Item content="LOGIN" />
+            </Link>
+          }
+
+          {Auth.isAuthenticated() &&
+            <a onClick={this.logout}>
+              <Menu.Item content="LOGOUT" />
+            </a>
+          }
+
+        </Container>
+      </Menu>
+    )
+  }
 }
 
 export default withRouter(Navbar)

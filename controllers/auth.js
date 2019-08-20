@@ -14,7 +14,7 @@ function loginRoute(req, res, next){
   User.findOne({ email: req.body.email })
     .then(user => {
       if(!user || !user.validatePassword(req.body.password)) {
-        return res.status(401).json({ message: 'unauthorized'})
+        return res.status(401).json({ message: 'That email/password combination is incorrect.'})
       }
       const payload = {sub: user._id}
       const token = jwt.sign(payload, secret, { expiresIn: '12h' })
