@@ -13,6 +13,7 @@ const contactSchema = new mongoose.Schema({
 
 const companySchema = new mongoose.Schema({
   companyName: { type: String, required: true },
+  location: { type: String, required: true },
   contact: contactSchema
 })
 
