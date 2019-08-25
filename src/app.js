@@ -9,6 +9,8 @@ import JobsShow from './components/jobs/JobsShow'
 import Footer from './components/common/Footer'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
+import UserShow from './components/users/UserShow'
+import CompaniesNew from './components/companies/CompaniesNew'
 
 import 'semantic-ui-css/semantic.min.css'
 import './style.scss'
@@ -19,8 +21,10 @@ class App extends React.Component {
       <BrowserRouter>
         <Navbar />
         <Switch>
+          <Route path='/hiring' component={CompaniesNew} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
+          <Route path='/profile' component={UserShow} />
           <Route path='/jobs/:id' component={JobsShow} />
           <Route path='/jobs' component={JobsIndex} />
           <Route path='/' component={Home} />
