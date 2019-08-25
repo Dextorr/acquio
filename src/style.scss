@@ -239,8 +239,19 @@ main.jobs {
 
 main.job {
   div.sectors {
-    div {
-      border: 1px solid #000;
+
+    div.column {
+
+      span{
+        display: block;
+        text-align: center;
+        background: lighten($primary, 45%);
+        border-radius: 4px;
+        padding: 1rem 0;
+        height: 100%;
+        font-size: 0.8rem;
+      }
+
     }
   }
 }
