@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 
-import { Container, Grid } from 'semantic-ui-react'
+import { Container, Grid, Segment, Button } from 'semantic-ui-react'
+
+import Auth from '../../lib/Auth'
 
 class JobsShow extends React.Component {
 
@@ -17,24 +19,27 @@ class JobsShow extends React.Component {
     return (
       <main className="job">
         <Container>
-          <Grid stackable>
+          <Segment>
+            <h2>{job.name}</h2>
+            <p>{job.description}</p>
+          </Segment>
 
-            <Grid.Column tablet={16} computer={8}>
-              <h2>{job.name}</h2>
-              <p>{job.description}</p>
-            </Grid.Column>
+          <Segment>
+            <Grid stackable className="sectors">
+              {job.sectors.map(sector =>
+                <Grid.Column key={sector._id} computer={6}>
+                  {sector.name}
+                </Grid.Column>
+              )}
+            </Grid>
+          </Segment>
 
-            <Grid.Column tablet={16} computer={6}>
-              <Grid stackable className="sectors">
-                {job.sectors.map(sector =>
-                  <Grid.Column key={sector._id} computer={6}>
-                    {sector.name}
-                  </Grid.Column>
-                )}
-              </Grid>
-            </Grid.Column>
+          {Auth.isAuthenticated() ?
+            <Button>Apply</Button>
+            :
+            <Button>Quick Apply</Button>
+          }
 
-          </Grid>
         </Container>
       </main>
     )
