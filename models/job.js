@@ -1,12 +1,11 @@
 const mongoose = require('mongoose')
 
 const applicantSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: 'You have already applied for a job with this email. Please complete your profile to apply for additional jobs.' },
-  fName: { type: String, required: true },
-  lName: { type: String, required: true },
-  location: { type: String, required: true },
-  cv: { type: String, required: true },
-  linkedIn: { type: String }
+  email: { type: String, required: 'Please provide an email address' },
+  fName: { type: String, required: 'Please provide your full name' },
+  lName: { type: String, required: 'Please provide your full name' },
+  location: { type: String, required: 'Please provide your location' },
+  cv: { type: String, required: 'Please provide your CV' }
 })
 
 const jobSchema = new mongoose.Schema({
