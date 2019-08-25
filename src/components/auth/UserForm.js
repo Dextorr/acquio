@@ -4,7 +4,7 @@ import { Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
-const UserForm = ({ handleChange, handleSubmit, data, errors }) => {
+const UserForm = ({ handleChange, handleSubmit, data, errors, password }) => {
   return(
     <Form onSubmit={handleSubmit}>
 
@@ -59,29 +59,31 @@ const UserForm = ({ handleChange, handleSubmit, data, errors }) => {
       />
       {errors && <p className="error-message">{errors.email}</p>}
 
-      <Form.Input
-        fluid
-        label="Password"
-        type="password"
-        name="password"
-        value={data.password}
-        onChange={handleChange}
-        placeholder="Please enter your password..."
-      />
-      {errors && <p className="error-message">{errors.password}</p>}
+      {password && <React.Fragment>
+        <Form.Input
+          fluid
+          label="Password"
+          type="password"
+          name="password"
+          value={data.password}
+          onChange={handleChange}
+          placeholder="Please enter your password..."
+        />
+        {errors && <p className="error-message">{errors.password}</p>}
 
-      <Form.Input
-        fluid
-        label="Password Confirmation"
-        type="password"
-        name="passwordConfirmation"
-        value={data.passwordConfirmation}
-        onChange={handleChange}
-        placeholder="Please re-enter your password..."
-      />
-      {errors && <p className="error-message">{errors.passwordConfirmation}</p>}
+        <Form.Input
+          fluid
+          label="Password Confirmation"
+          type="password"
+          name="passwordConfirmation"
+          value={data.passwordConfirmation}
+          onChange={handleChange}
+          placeholder="Please re-enter your password..."
+        />
+        {errors && <p className="error-message">{errors.passwordConfirmation}</p>}
+      </React.Fragment>}
 
-      <Form.Button><span>Register</span></Form.Button>
+      <Form.Button><span>{password ? 'Register':'Apply'}</span></Form.Button>
       <p>Already registered? <Link to="/login">Log in here!</Link></p>
     </Form>
   )

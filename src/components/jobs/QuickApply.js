@@ -3,9 +3,9 @@ import axios from 'axios'
 
 import { Container } from 'semantic-ui-react'
 
-import UserForm from './UserForm'
+import UserForm from '../auth/UserForm'
 
-class Register extends React.Component{
+class QuickApply extends React.Component {
   constructor(){
     super()
 
@@ -14,8 +14,6 @@ class Register extends React.Component{
         fName: '',
         lName: '',
         email: '',
-        password: '',
-        passwordConfirmation: '',
         location: '',
         cv: ''
       },
@@ -33,21 +31,35 @@ class Register extends React.Component{
 
   handleSubmit(e){
     e.preventDefault()
-    axios.post(`/api/jobs/${this.props.params.match.id}/quickapply/`, this.state.data)
+    axios.put(`/api/jobs/${this.props.match.params.id}/quickapply`, this.state.data)
       .then(() => this.props.history.push('/login'))
-      .catch(err => this.setState({ errors: err.response.data }))
+      .catch(err => {
+        const errors = {}
+        const keys = Object.keys(err.response.data)
+        const newKeys = keys.map(key => {
+          const keyParts = key.split('.')
+          return { [key]: keyParts[2] }
+        })
+        newKeys.forEach(key => {
+          const oldKey = Object.keys(key)[0]
+          errors[key[oldKey]] = err.response.data[oldKey]
+        })
+        console.log(errors)
+        console.log(err.response.data)
+        this.setState({ errors })
+      })
   }
 
   render(){
     return(
-      <main>
+      <main className="quick-apply">
         <Container>
           <UserForm
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             data={this.state.data}
             errors={this.state.errors}
-            password={true}
+            password={false}
           />
         </Container>
       </main>
@@ -55,4 +67,4 @@ class Register extends React.Component{
   }
 }
 
-export default Register
+export default QuickApply

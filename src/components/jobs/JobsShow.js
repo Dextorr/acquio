@@ -26,7 +26,7 @@ class JobsShow extends React.Component {
   }
 
   quickApply(){
-    this.props.history.push(`/quickApply/${this.state.job._id}`)
+    this.props.history.push(`/quickapply/${this.state.job._id}`)
   }
 
   render(){
