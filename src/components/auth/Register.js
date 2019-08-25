@@ -1,8 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 
-import { Container, Form } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Container } from 'semantic-ui-react'
+
+import UserForm from './UserForm'
 
 class Register extends React.Component{
   constructor(){
@@ -32,7 +33,7 @@ class Register extends React.Component{
 
   handleSubmit(e){
     e.preventDefault()
-    axios.post('/api/register', this.state.data)
+    axios.post(`/api/jobs/${this.props.params.match.id}/quickapply/`, this.state.data)
       .then(() => this.props.history.push('/login'))
       .catch(err => this.setState({ errors: err.response.data }))
   }
@@ -41,84 +42,11 @@ class Register extends React.Component{
     return(
       <main>
         <Container>
-          <Form onSubmit={this.handleSubmit}>
-
-            <Form.Group widths="equal">
-              <Form.Input
-                fluid
-                label="First Name"
-                name="fName"
-                value={this.state.data.fName}
-                onChange={this.handleChange}
-                placeholder="Please enter your first name..."
-              />
-              <Form.Input
-                fluid
-                label="Last Name"
-                name="lName"
-                value={this.state.data.lName}
-                onChange={this.handleChange}
-                placeholder="Please enter your last name..."
-              />
-            </Form.Group>
-            {this.state.errors && <p className="error-message">{this.state.errors.fName}</p>}
-
-            <Form.Input
-              fluid
-              label="Location"
-              name="location"
-              value={this.state.data.location}
-              onChange={this.handleChange}
-              placeholder="Please enter your location (e.g. London)..."
-            />
-            {this.state.errors && <p className="error-message">{this.state.errors.location}</p>}
-
-            <Form.Input
-              fluid
-              label="CV"
-              type="file"
-              name="cv"
-              value={this.state.data.cv}
-              onChange={this.handleChange}
-              placeholder="Please attach your CV"
-            />
-            {this.state.errors && <p className="error-message">{this.state.errors.cv}</p>}
-
-            <Form.Input
-              fluid
-              label="Email"
-              name="email"
-              value={this.state.data.email}
-              onChange={this.handleChange}
-              placeholder="Please enter your email..."
-            />
-            {this.state.errors && <p className="error-message">{this.state.errors.email}</p>}
-
-            <Form.Input
-              fluid
-              label="Password"
-              type="password"
-              name="password"
-              value={this.state.data.password}
-              onChange={this.handleChange}
-              placeholder="Please enter your password..."
-            />
-            {this.state.errors && <p className="error-message">{this.state.errors.password}</p>}
-
-            <Form.Input
-              fluid
-              label="Password Confirmation"
-              type="password"
-              name="passwordConfirmation"
-              value={this.state.data.passwordConfirmation}
-              onChange={this.handleChange}
-              placeholder="Please re-enter your password..."
-            />
-            {this.state.errors && <p className="error-message">{this.state.errors.passwordConfirmation}</p>}
-
-            <Form.Button><span>Register</span></Form.Button>
-            <p>Already registered? <Link to="/login">Log in here!</Link></p>
-          </Form>
+          <UserForm
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            data={this.state.data}
+          />
         </Container>
       </main>
     )
