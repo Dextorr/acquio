@@ -26,10 +26,6 @@ class Navbar extends React.Component {
             <img src='../../assets/logo-files/svg/color-no-bg.svg' />
           </Link>
 
-          <Link to="/about">
-            <Menu.Item content="ABOUT" />
-          </Link>
-
           <Link to="/jobs">
             <Menu.Item content="JOBS" />
           </Link>
