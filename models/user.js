@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
 const userSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: 'That email address has already been registered.' },
-  password: { type: String, required: true },
-  fName: { type: String, required: true },
-  lName: { type: String, required: true },
-  location: { type: String, required: true },
-  cv: { type: String, required: true },
+  email: { type: String, required: 'Please provide an email address', unique: 'That email address has already been registered.' },
+  password: { type: String, required: 'Please provide a password' },
+  fName: { type: String, required: 'Please provide your full name' },
+  lName: { type: String, required: 'Please provide your full name' },
+  location: { type: String, required: 'Please provide your location' },
+  cv: { type: String, required: 'Please provide your CV' },
   statement: { type: String },
   portfolio: { type: String },
   github: { type: String },
@@ -46,7 +46,6 @@ userSchema.methods.validatePassword = function(password) {
 userSchema.set('toJSON', {
   virtuals: true,
   transform(doc, json) {
-    delete json.email
     delete json.password
     return json
   }
