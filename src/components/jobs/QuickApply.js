@@ -32,21 +32,21 @@ class QuickApply extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     axios.put(`/api/jobs/${this.props.match.params.id}/quickapply`, this.state.data)
-      .then(() => this.props.history.push('/login'))
+      .then(() => this.goBack())
       .catch(err => {
-        const errors = {}
-        const keys = Object.keys(err.response.data)
-        const newKeys = keys.map(key => {
-          const keyParts = key.split('.')
-          return { [key]: keyParts[2] }
-        })
-        newKeys.forEach(key => {
-          const oldKey = Object.keys(key)[0]
-          errors[key[oldKey]] = err.response.data[oldKey]
-        })
-        console.log(errors)
-        console.log(err.response.data)
-        this.setState({ errors })
+        if (err.response){
+          const errors = {}
+          const keys = Object.keys(err.response.data)
+          const newKeys = keys.map(key => {
+            const keyParts = key.split('.')
+            return { [key]: keyParts[2] }
+          })
+          newKeys.forEach(key => {
+            const oldKey = Object.keys(key)[0]
+            errors[key[oldKey]] = err.response.data[oldKey]
+          })
+          this.setState({ errors })
+        }
       })
   }
 
