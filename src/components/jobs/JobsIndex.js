@@ -10,7 +10,13 @@ class JobsIndex extends React.Component{
   componentDidMount(){
     axios.get('/api/jobs')
       .then(res => {
-        const jobs = res.data.filter(job => job.active)
+        const jobs = res.data
+          .filter(job => job.active)
+          .sort((a, b) => {
+            const aDate = new Date(a.createdAt)
+            const bDate = new Date(b.createdAt)
+            return bDate - aDate
+          })
         this.setState({ jobs })
       })
       .catch(err => console.error(err))
