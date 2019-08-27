@@ -32,7 +32,7 @@ class QuickApply extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     axios.put(`/api/jobs/${this.props.match.params.id}/quickapply`, this.state.data)
-      .then(() => this.goBack())
+      .then(() => this.props.history.push('/jobs'))
       .catch(err => {
         if (err.response){
           const errors = {}
