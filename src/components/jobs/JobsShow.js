@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Promise from 'bluebird'
 
 import { Container, Grid, Segment, Button } from 'semantic-ui-react'
 
@@ -14,9 +15,35 @@ class JobsShow extends React.Component {
   }
 
   componentDidMount(){
-    axios.get(`/api/jobs/${this.props.match.params.id}`)
-      .then(res => this.setState({ job: res.data }))
-      .catch(err => console.error(err))
+    Promise.props({
+      job: axios.get(`/api/jobs/${this.props.match.params.id}`)
+        .then(res => res.data)
+        .catch(err => err.jobError),
+      user: axios.get('/api/profile', {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+      })
+        .then(res => res.data)
+        .catch(err => err.userError)
+    })
+      .then(data => {
+        if(Auth.isAuthenticated){
+          const { job, user } = data
+          this.setState({
+            job,
+            user,
+            errors: {
+              job: data.jobError,
+              user: data.userError
+            }
+          })
+        } else {
+          const { job } = data
+          this.setState({
+            job,
+            errors: data.jobError
+          })
+        }
+      })
   }
 
   apply(){
@@ -31,7 +58,8 @@ class JobsShow extends React.Component {
 
   render(){
     if (!this.state) return null
-    const { job } = this.state
+    const { job, user } = this.state
+    const applied = user.jobs.some(userJob => userJob._id === job._id)
     return (
       <main className="job">
         <Container>
@@ -59,7 +87,10 @@ class JobsShow extends React.Component {
           </Segment>
 
           {Auth.isAuthenticated() ?
-            <Button onClick={this.apply}>Apply</Button>
+            <Button
+              onClick={this.apply}
+              disabled={applied}
+            >{applied ? 'You\'ve applied for this job':'Apply'}</Button>
             :
             <Button onClick={this.quickApply}>Quick Apply</Button>
           }
