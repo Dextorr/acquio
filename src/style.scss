@@ -170,6 +170,7 @@ h1 {
 main.home {
   width: 100vw;
   margin: 0;
+  padding: 0;
 
   section.hero{
     background: lighten($secondary, 50%);
@@ -297,4 +298,14 @@ form {
 
   @include button();
 
+}
+
+// PROFILE *********************************************************************
+
+main.profile {
+
+  section.jobs-applied,
+  section.recent-jobs{
+    @include job-card();
+  }
 }

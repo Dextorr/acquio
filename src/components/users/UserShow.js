@@ -5,6 +5,7 @@ import Promise from 'bluebird'
 import Auth from '../../lib/Auth'
 
 import { Container, Header, Segment, Grid } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 import JobsCard from '../jobs/JobsCard'
 import RecentJobs from '../jobs/RecentJobs'
@@ -124,19 +125,24 @@ class UserShow extends React.Component{
           </Segment>
 
           <Segment>
-            <Header as="h3">{'Job applications'}</Header>
-            <Grid stackable>
-              {jobs.length > 0 ?
-                jobs.map(job =>
-                  <Grid.Column key={job._id}>
-                    <JobsCard job={job} />
-                  </Grid.Column>
-                )
-                :
-                <Header as="h4">{'No jobs applied for yet...'}</Header>
-              }
-            </Grid>
+            <section className="jobs-applied" >
+              <Header as="h3">{'Job applications'}</Header>
+              <Grid stackable>
+                {jobs.length > 0 ?
+                  jobs.map(job =>
+                    <Grid.Column key={job._id} computer={4} >
+                      <Link to={`/jobs/${job._id}`}>
+                        <JobsCard job={job} />
+                      </Link>
+                    </Grid.Column>
+                  )
+                  :
+                  <Header as="h4">{'No jobs applied for yet...'}</Header>
+                }
+              </Grid>
+            </section>
           </Segment>
+
 
           <Segment>
             <RecentJobs jobs={this.state.jobs} />
