@@ -26,7 +26,7 @@ class JobsShow extends React.Component {
         .catch(err => err.userError)
     })
       .then(data => {
-        if(Auth.isAuthenticated){
+        if(Auth.isAuthenticated()){
           const { job, user } = data
           this.setState({
             job,
@@ -59,7 +59,8 @@ class JobsShow extends React.Component {
   render(){
     if (!this.state) return null
     const { job, user } = this.state
-    const applied = user.jobs.some(userJob => userJob._id === job._id)
+    let applied = null
+    if (this.state.user) applied = user.jobs.some(userJob => userJob._id === job._id)
     return (
       <main className="job">
         <Container>
