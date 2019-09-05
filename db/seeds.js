@@ -33,6 +33,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
         }),
         company1: Company.create({
           companyName: 'Company One',
+          location: 'London',
           contact: {
             fName: 'John',
             lName: 'Smith',
@@ -43,6 +44,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
         }),
         company2: Company.create({
           companyName: 'Company Two',
+          location: 'London',
           contact: {
             fName: 'Jane',
             lName: 'Doe',
@@ -111,7 +113,6 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
           fName: 'Reinfredo',
           lName: 'Bondoc',
           location: 'London',
-          cv: 'CV',
           admin: true
         }),
         user1: User.create({
@@ -121,7 +122,6 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
           fName: 'Dexter',
           lName: 'De Leon',
           location: 'London',
-          cv: 'This is my CV',
           statement: 'I\'m Dex De Leon, a full-stack Web Developer looking for a full-time role.',
           portfolio: 'http://dexdeleon.com',
           github: 'https://github.io/Dextorr',
@@ -137,7 +137,6 @@ mongoose.connect(dbURI, { useNewUrlParser: true }, (err, db) => {
           fName: 'John',
           lName: 'Doe',
           location: 'London',
-          cv: 'This is my CV',
           statement: 'I\'m John Doe, an accountant looking for a full-time role.',
           jobs: [data1.job2],
           admin: false

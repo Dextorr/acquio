@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import { Container } from 'semantic-ui-react'
 
-import UserForm from './UserForm'
+import UserForm from '../users/UserForm'
 
 class Register extends React.Component{
   constructor(){
@@ -16,8 +16,7 @@ class Register extends React.Component{
         email: '',
         password: '',
         passwordConfirmation: '',
-        location: '',
-        cv: ''
+        location: ''
       },
       errors: null
     }

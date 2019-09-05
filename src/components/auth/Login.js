@@ -5,6 +5,7 @@ import { Container, Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 import Auth from '../../lib/Auth'
+import Flash from '../../lib/Flash'
 
 class Login extends React.Component {
   constructor(){
@@ -30,7 +31,10 @@ class Login extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     axios.post('/api/login', this.state.data)
-      .then(res => Auth.setToken(res.data.token))
+      .then(res => {
+        Auth.setToken(res.data.token)
+        Flash.setMessage('Logged in successfully', res.data.message)
+      })
       .then(() => this.props.history.push('/profile'))
       .catch(err => this.setState({ errors: err.response.data }))
   }

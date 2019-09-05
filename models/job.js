@@ -4,8 +4,7 @@ const applicantSchema = new mongoose.Schema({
   email: { type: String, required: 'Please provide an email address' },
   fName: { type: String, required: 'Please provide your full name' },
   lName: { type: String, required: 'Please provide your full name' },
-  location: { type: String, required: 'Please provide your location' },
-  cv: { type: String, required: 'Please provide your CV' }
+  location: { type: String, required: 'Please provide your location' }
 })
 
 const jobSchema = new mongoose.Schema({

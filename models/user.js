@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
   fName: { type: String, required: 'Please provide your full name' },
   lName: { type: String, required: 'Please provide your full name' },
   location: { type: String, required: 'Please provide your location' },
-  cv: { type: String, required: 'Please provide your CV' },
   statement: { type: String },
   portfolio: { type: String },
   github: { type: String },
