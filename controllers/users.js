@@ -14,6 +14,16 @@ function showRoute(req, res, next){
     .catch(next)
 }
 
+function updateRoute(req, res, next){
+  console.log('USER UPDATE')
+  console.log('currentUser', req.currentUser)
+  User.findById(req.currentUser)
+    .then(user => user.set(req.body))
+    .then(user => user.save())
+    .then(user => res.status(200).json(user))
+    .catch(next)
+}
+
 function profile(req, res, next){
   User.findById(req.currentUser)
     .populate('jobs')
@@ -35,6 +45,7 @@ function apply(req, res, next){
 module.exports = {
   index: indexRoute,
   show: showRoute,
+  update: updateRoute,
   profile,
   apply
 }

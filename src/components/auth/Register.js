@@ -47,6 +47,8 @@ class Register extends React.Component{
             data={this.state.data}
             errors={this.state.errors}
             password={true}
+            cv={false}
+            login={true}
           />
         </Container>
       </main>

@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import { Container } from 'semantic-ui-react'
 
-import UserForm from '../auth/UserForm'
+import UserForm from '../users/UserForm'
 
 class QuickApply extends React.Component {
   constructor(){
@@ -60,6 +60,8 @@ class QuickApply extends React.Component {
             data={this.state.data}
             errors={this.state.errors}
             password={false}
+            cv={true}
+            login={true}
           />
         </Container>
       </main>

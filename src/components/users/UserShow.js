@@ -42,7 +42,7 @@ class UserShow extends React.Component{
     }).then(data => {
 
       const { user, jobsIndex } = data
-      const progress = Math.round(100 * ( (Object.keys(user).length - 5)/10 ))
+      const progress = Math.round(100 * ( (Object.keys(user).length - 5)/9 ))
       const jobs = jobsIndex.sort((a, b) => {
         const aDate = new Date(a.createdAt)
         const bDate = new Date(b.createdAt)
@@ -57,12 +57,12 @@ class UserShow extends React.Component{
   render(){
     if (!this.state.jobs) return null
     const {
+      _id,
       fName,
       lName,
       email,
       phone,
       location,
-      cv,
       statement,
       portfolio,
       github,
@@ -78,6 +78,7 @@ class UserShow extends React.Component{
           <p>
             Profile is {this.state.progress}% complete
           </p>
+          <Link to={`/users/${_id}/edit`} >Edit profile</Link>
 
           <Segment className="personal-details">
             <Header as="h3">Personal Details</Header>
@@ -101,10 +102,6 @@ class UserShow extends React.Component{
 
           <Segment>
             <Header as="h3">Application presets</Header>
-            <p>
-              <span>CV: </span>
-              {cv.split('\\')[cv.split('\\').length-1] || ''}
-            </p>
             <p>
               <span>Personal Statement: </span>
               {statement || ''}

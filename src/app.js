@@ -12,6 +12,7 @@ import Register from './components/auth/Register'
 import UserShow from './components/users/UserShow'
 import CompaniesNew from './components/companies/CompaniesNew'
 import QuickApply from './components/jobs/QuickApply'
+import UserEdit from './components/users/UserEdit'
 
 import 'semantic-ui-css/semantic.min.css'
 import './style.scss'
@@ -22,6 +23,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Navbar />
         <Switch>
+          <Route path='/users/:id/edit' component={UserEdit} />
           <Route path='/quickapply/:id' component={QuickApply} />
           <Route path='/hiring' component={CompaniesNew} />
           <Route path='/login' component={Login} />

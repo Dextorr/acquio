@@ -45,6 +45,7 @@ router.route('/users/:id')
 
 router.route('/profile')
   .get(secureRoute, userController.profile)
+  .put(secureRoute, userController.update)
 
 router.route('/register')
   .post(authController.register)
