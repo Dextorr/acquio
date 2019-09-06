@@ -42,7 +42,8 @@ class UserShow extends React.Component{
     }).then(data => {
 
       const { user, jobsIndex } = data
-      const progress = Math.round(100 * ( (Object.keys(user).length - 5)/9 ))
+      const profileFilled = Object.keys(user).filter(key => user[key] !== '').length - 6
+      const progress = Math.floor(100 * ( (profileFilled)/8 ))
       const jobs = jobsIndex.sort((a, b) => {
         const aDate = new Date(a.createdAt)
         const bDate = new Date(b.createdAt)
